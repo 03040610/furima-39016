@@ -1,6 +1,6 @@
 # README
 
-users table
+## users table
 
 |Column            |Type      |Options                      |
 | ---------------- | -------- | --------------------------- | 
@@ -12,7 +12,7 @@ users table
 |first_kana_name   |string    |null: false                  |
 |last_kana_name    |string    |null: false                  |
 |birth_day         |date      |null: false                  |
- Association
+### Association
 - has_many :items
 - has_many :purchases
 
