@@ -21,14 +21,13 @@
 | ---------------- | -------- | --------------------------- | 
 |item_name         |string    |null: false                  |
 |item_column       |text      |null: false                  |
-|item_price        |interger  |null: false                  |
-|item_category_id  |interger  |null: false                  |
-|item_status_id    |interger  |null: false                  |
-|delivery_charge_id|interger  |null: false                  |
-|item_region_id    |interger  |null: false                  |
-|item_date_id      |interger  |null: false                  |
+|item_price        |integer  |null: false                  |
+|item_category_id  |integer  |null: false                  |
+|item_status_id    |integer  |null: false                  |
+|delivery_charge_id|integer  |null: false                  |
+|prefecture_id     |integer  |null: false                  |
+|item_date_id      |integer  |null: false                  |
 |user              |references|foreign_key: true,null: false|
-### Association
 - has_one :purchase
 - belongs_to :user
 
@@ -45,7 +44,7 @@
 ## places table
 |Column            |Type      |Options                      |
 | ---------------- | -------- | --------------------------- | 
-|prefecture_id     |interger  |null: false                  |
+|prefecture_id     |integer  |null: false                  |
 |city              |string    |null: false                  | 
 |address           |string    |null: false                  | 
 |phone_number      |string    |null: false                  |    
