@@ -25,8 +25,9 @@ items table
 |item_category_id  |interger  |null: false                  |
 |item_status_id    |interger  |null: false                  |
 |delivery_charge_id|interger  |null: false                  |
+|item_region_id    |interger  |null: false                  |
+|item_date_id      |interger  |null: false                  |
 |user              |references|foreign_key: true,null: false|
-|purchase          |references|foreign_key: true,null: false|
  Association
 - has_one :purchase
 - belongs_to :user
@@ -34,8 +35,8 @@ items table
 purchases table
 |Column            |Type      |Options                      |
 | ---------------- | -------- | --------------------------- | 
-|users             |references|foreign_key: true,null: false|
-|items             |references|foreign_key: true,null: false|
+|user              |references|foreign_key: true,null: false|
+|item              |references|foreign_key: true,null: false|
  Association
 - belongs_to :user
 - belongs_to :item
@@ -44,12 +45,12 @@ purchases table
 places table
 |Column            |Type      |Options                      |
 | ---------------- | -------- | --------------------------- | 
-|prefecture_id     |interger  |                             |
-|place_date_id     |interger  |                             |
+|prefecture_id     |interger  |null: false                  |
 |city              |string    |null: false                  | 
 |address           |string    |null: false                  | 
 |phone_number      |string    |null: false                  |    
 |post_code         |string    |null: false                  | 
 |building_name     |string    |                             |
+|purchase          |references|null: false                  |
  Association
 - belongs_to :purchase
