@@ -3,7 +3,7 @@
 users table
 
 |Column            |Type      |Options                      |
-| -------          |----------|-----------------------------| 
+| ---------------- | -------- | --------------------------- | 
 |email             |string    |null: false,unique: true     |
 |nick_name         |string    |null: false                  |
 |encrypted_password|string    |null: false                  |
@@ -17,34 +17,39 @@ users table
 - has_many :purchases
 
 items table
+|Column            |Type      |Options                      |
+| ---------------- | -------- | --------------------------- | 
 |item_name         |string    |null: false                  |
 |item_column       |text      |null: false                  |
 |item_price        |interger  |null: false                  |
 |item_category_id  |interger  |null: false                  |
 |item_status_id    |interger  |null: false                  |
 |delivery_charge_id|interger  |null: false                  |
-|user              |references|foreign_key: true            |
+|user              |references|foreign_key: true,null: false|
+|purchase          |references|foreign_key: true,null: false|
  Association
 - has_one :purchase
 - belongs_to :user
 
 purchases table
-|users_id           |references|foreign_key: true           |
-|items_id           |references|foreign_key: true           |
-|places_id          |references|foreign_key: true           |
+|Column            |Type      |Options                      |
+| ---------------- | -------- | --------------------------- | 
+|users             |references|foreign_key: true,null: false|
+|items             |references|foreign_key: true,null: false|
  Association
 - belongs_to :user
 - belongs_to :item
 - has_one :place
 
 places table
-|prefecture_id      |interger  |                            |
-|place_date_id      |interger  |                            |
-|city               |string    |null: false                 | 
-|address            |string    |null: false                 | 
-|phone_number       |interger  |null: false                 |    
-|post_code          |string    |null: false                 | 
-|building_name      |string    |                            |
-|purchases_id       |references|foreign_key: true           |
+|Column            |Type      |Options                      |
+| ---------------- | -------- | --------------------------- | 
+|prefecture_id     |interger  |                             |
+|place_date_id     |interger  |                             |
+|city              |string    |null: false                  | 
+|address           |string    |null: false                  | 
+|phone_number      |string    |null: false                  |    
+|post_code         |string    |null: false                  | 
+|building_name     |string    |                             |
  Association
-- belongs_to :purchases
+- belongs_to :purchase
