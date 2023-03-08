@@ -1,24 +1,55 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+|Column            |Type      |Options                      |
+| ---------------- | -------- | --------------------------- | 
+|email             |string    |null: false,unique: true     |
+|nick_name         |string    |null: false                  |
+|encrypted_password|string    |null: false                  |
+|first_name        |string    |null: false                  |
+|last_name         |string    |null: false                  |
+|first_kana_name   |string    |null: false                  |
+|last_kana_name    |string    |null: false                  |
+|birth_day         |date      |null: false                  |
+### Association
+- has_many :items
+- has_many :purchases
 
-* Ruby version
+## items table
+|Column            |Type      |Options                      |
+| ---------------- | -------- | --------------------------- | 
+|item_name         |string    |null: false                  |
+|item_column       |text      |null: false                  |
+|item_price        |integer  |null: false                  |
+|item_category_id  |integer  |null: false                  |
+|item_status_id    |integer  |null: false                  |
+|delivery_charge_id|integer  |null: false                  |
+|prefecture_id     |integer  |null: false                  |
+|item_date_id      |integer  |null: false                  |
+|user              |references|foreign_key: true,null: false|
+- has_one :purchase
+- belongs_to :user
 
-* System dependencies
+## purchases table
+|Column            |Type      |Options                      |
+| ---------------- | -------- | --------------------------- | 
+|user              |references|foreign_key: true,null: false|
+|item              |references|foreign_key: true,null: false|
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :place
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## places table
+|Column            |Type      |Options                      |
+| ---------------- | -------- | --------------------------- | 
+|prefecture_id     |integer  |null: false                  |
+|city              |string    |null: false                  | 
+|address           |string    |null: false                  | 
+|phone_number      |string    |null: false                  |    
+|post_code         |string    |null: false                  | 
+|building_name     |string    |                             |
+|purchase          |references|null: false                  |
+### Association
+- belongs_to :purchase
