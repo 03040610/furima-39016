@@ -2,59 +2,49 @@
 
 users table
 
-|Column|Type|Options|
-|email|string|null: false,unique: true |
-|nick_name|string|null: false|
-|password|string|null: false|
-|encrypted_password|string|null: false|
-|name|string|null: false|
-|kana_name|string|null: false|
-|birth_day|datetime|null: false|
-|items_id|references|null: false,foreign_key: true|
-|purchases_id|references|null: false,foreign_key: true|
-|places_id|references|null: false,foreign_key: true|
-|phone_number|interger|null: false|
+|Column            |Type      |Options                      |
+| -------          |----------|-----------------------------| 
+|email             |string    |null: false,unique: true     |
+|nick_name         |string    |null: false                  |
+|encrypted_password|string    |null: false                  |
+|first_name        |string    |null: false                  |
+|last_name         |string    |null: false                  |
+|first_kana_name   |string    |null: false                  |
+|last_kana_name    |string    |null: false                  |
+|birth_day         |date      |null: false                  |
  Association
-has_many :items
-has_many :purchases
-has_many :places
+- has_many :items
+- has_many :purchases
 
 items table
-|item_image|string|null: false|
-|item_name|string|null: false|
-|item_column|text|null: false|
-|item_price|interger|null: false|
-|item_category|string|null: false|
-|item_status|string|null: false|
-|delivery_charge|interger|null: false|
-|users_id|references|foreign_key: true|
-|purchases_id|references|foreign_key: true|
-|places_id|references|foreign_key: true|
+|item_name         |string    |null: false                  |
+|item_column       |text      |null: false                  |
+|item_price        |interger  |null: false                  |
+|item_category_id  |interger  |null: false                  |
+|item_status_id    |interger  |null: false                  |
+|delivery_charge_id|interger  |null: false                  |
+|user              |references|foreign_key: true            |
  Association
-has_one :purchases
-belongs_to :users
-has_many :places
+- has_one :purchase
+- belongs_to :user
 
 purchases table
-|purchases_name|string||
-|purchases_item|string||
-|users_id|references|foreign_key: true|
-|items_id|references|foreign_key: true|
-|places_id|references|foreign_key: true|
+|users_id           |references|foreign_key: true           |
+|items_id           |references|foreign_key: true           |
+|places_id          |references|foreign_key: true           |
  Association
-belongs_to :users
-belongs_to :items
-has_many :places
+- belongs_to :user
+- belongs_to :item
+- has_one :place
 
 places table
-|prefecture|string||
-|place_date|datetime||
-|city|string|null: false|
-|address|string|null: false|
-|post_code|string|null: false|
-|building_name|string||
-|users_id|references|foreign_key: true|
-|purchases_id|references|foreign_key: true|
+|prefecture_id      |interger  |                            |
+|place_date_id      |interger  |                            |
+|city               |string    |null: false                 | 
+|address            |string    |null: false                 | 
+|phone_number       |interger  |null: false                 |    
+|post_code          |string    |null: false                 | 
+|building_name      |string    |                            |
+|purchases_id       |references|foreign_key: true           |
  Association
-belongs_to :users
-belongs_to :purchases
+- belongs_to :purchases
