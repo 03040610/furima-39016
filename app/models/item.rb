@@ -1,12 +1,6 @@
 class Item < ApplicationRecord
   validates :item_name,          presence: true
   validates :item_column,        presence: true
-  validates :item_category_id,   presence: true
-  validates :item_status_id,     presence: true
-  validates :delivery_charge_id, presence: true
-  validates :prefecture_id,      presence: true
-  validates :item_date_id,       presence: true
-  validates :item_price,         presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, numericality: { only_integer: true }
   validates :image,              presence: true
   
   has_one_attached :image
@@ -19,9 +13,9 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :item_date
   
-  validates :item_category,     numericality: { other_than: 1, message: "can't be blank" } 
-  validates :item_status,       numericality: { other_than: 1, message: "can't be blank" }
-  validates :delivery_charge,   numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefecture,        numericality: { other_than: 1, message: "can't be blank" }  
-  validates :item_date,         numericality: { other_than: 1, message: "can't be blank" } 
+  validates :item_category_id,    numericality: { only_integer: true, greater_than: 1 }, presence: true
+  validates :item_status_id,      numericality: { only_integer: true, greater_than: 1 }, presence: true
+  validates :delivery_charge_id,  numericality: { only_integer: true, greater_than: 1 }, presence: true
+  validates :prefecture_id,       numericality: { only_integer: true, greater_than: 1 }, presence: true  
+  validates :item_date_id,        numericality: { only_integer: true, greater_than: 1 }, presence: true
 end
