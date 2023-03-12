@@ -1,0 +1,11 @@
+function price () {
+  const inputPrice = document.getElementById("item-price");
+  const addTaxDom = document.getElementById("add-tax-price");
+
+  inputPrice.addEventListener("input",() => {
+    const inputValue = inputPrice.value
+    addTaxDom.innerHTML = Math.floor(inputValue/10);
+    console.log(inputValue);
+  })
+} 
+window.addEventListener('load', price);
