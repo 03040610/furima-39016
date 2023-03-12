@@ -47,11 +47,24 @@ RSpec.describe Item, type: :model do
         @item.valid?
        expect(@item.errors.full_messages).to include("Item price must be less than or equal to 9999999")
       end
+
+      it 'item_priceは半角数字のみ保存できる' do
+        @item.item_price = 'hello'
+        @item.item_price = @item.item_price
+        @item.valid?
+       expect(@item.errors.full_messages).to include("Item price must be greater than or equal to 300")
+      end
   
       it 'item_category_idが空では登録できない' do
         @item.item_category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Item category can't be blank")
+      end
+      
+      it 'item_category_idのidが1では登録できない' do
+        @item.item_category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item category must be greater than 1")
       end
 
       it 'item_status_idが空では登録できない' do
@@ -60,22 +73,46 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Item status can't be blank")
       end
 
+      it 'item_status_idのidが1では登録できない' do
+        @item.item_status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item status must be greater than 1")
+      end
+
       it 'delivery_charge_idが空では登録できない' do
         @item.delivery_charge_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
       
+      it 'delivery_charge_idのidが1では登録できない' do
+        @item.delivery_charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery charge must be greater than 1")
+      end
+
       it 'prefecture_idが空では登録できない' do
         @item.prefecture_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
+      it 'prefecture_idのidが1では登録できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture must be greater than 1")
       end
       
       it 'item_date_id が空では登録できない' do
         @item.item_date_id  = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Item date can't be blank")
+      end
+
+      it 'item_date_idのidが1では登録できない' do
+        @item.item_date_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item date must be greater than 1")
       end
       it 'ユーザーが紐付いていなければ投稿できない' do
         @item.user = nil

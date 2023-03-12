@@ -7,7 +7,6 @@ function price () {
     const inputValue = parseInt(inputPrice.value);
     addTaxDom.innerHTML = Math.floor(inputValue/10);
     profitPrice.innerHTML = Math.floor(inputValue*0.9);
-    console.log(inputValue);
   })
 } 
 window.addEventListener('load', price);
