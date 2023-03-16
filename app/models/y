@@ -11,8 +11,8 @@ class PurchasePlace < ApplicationRecord
     validates :prefecture_id, numericality: { only_integer: true, greater_than: 1 }
     validates :city
     validates :address
-    validates :phone_number,  length: { minimum: 10, maximum: 11 }, numericality: { only_integer: true }
-    validates :post_code,     format: { with: /\A\d{3}-\d{4}\z/ }
+    validates :phone_number, length: { minimum: 10, maximum: 11 }, numericality: { only_integer: true }
+    validates :post_code, format: { with: /\A\d{3}-\d{4}\z/ }
   end
   
   def save
@@ -23,6 +23,8 @@ class PurchasePlace < ApplicationRecord
     if place.valid?
       place.save
       purchase.update(place_id: place.id)
+    else
+      false
     end
   end 
 end
