@@ -1,9 +1,6 @@
-class PurchasePlace < ApplicationRecord
+class PurchasePlace 
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :prefecture_id, :city, :address, :phone_number, :building_name, :post_code
-  
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :prefecture
 
   with_options presence: true do
     validates :item_id
