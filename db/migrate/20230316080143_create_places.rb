@@ -3,10 +3,11 @@ class CreatePlaces < ActiveRecord::Migration[6.0]
     create_table :places do |t|
       t.string :city,              null: false
       t.string :address,           null: false
-      t.integer :phone_number,     null: false
+      t.string :phone_number,      null: false
       t.string :building_name
-      t.integer :postcode,          null: false
+      t.string :post_code,         null: false
       t.integer :prefecture_id,    null: false
+      t.references :purchase,      null: false, foreign_key: true
       t.timestamps
     end
   end
