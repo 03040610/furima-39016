@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:edit, :destroy]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :edit_index, only: [:edit]
-
+  before_action :purchase_index, only: [:purchase]
+  
   def index
     @item = Item.order("created_at DESC")
   end
@@ -56,6 +57,12 @@ class ItemsController < ApplicationController
     def edit_index
       @item=Item.find(params[:id])
       if (user_signed_in?) && (current_user.id != @item.purchase.user_id)
+        redirect_to action: :index
+      end
+    end
+    def purchase_index
+      @item=Item.find(params[:id])
+      if (user_signed_in?) && (current_user.id == @item.user_id)
         redirect_to action: :index
       end
     end

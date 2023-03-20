@@ -10,7 +10,7 @@ class PurchasePlace
     validates :address
     validates :phone_number,  length: { minimum: 10, maximum: 11 }, numericality: { only_integer: true }
     validates :post_code,     format: { with: /\A\d{3}-\d{4}\z/ }
-    #validates :token
+    validates :token
   end
   
   def save

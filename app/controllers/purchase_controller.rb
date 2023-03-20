@@ -1,7 +1,14 @@
 class PurchaseController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+
   def index
     @purchase_place = PurchasePlace.new
     @item = Item.find(params[:item_id])
+    if (user_signed_in?) && (@item.user_id == current_user.id)
+      redirect_to root_path
+    elsif (user_signed_in?) && (current_user.id != @item.user_id) && (@item.purchase.present?)
+      redirect_to root_path
+    end
   end
   
   def create
@@ -30,4 +37,3 @@ class PurchaseController < ApplicationController
     )
    end
 end
-
