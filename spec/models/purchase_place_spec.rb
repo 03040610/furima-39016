@@ -76,7 +76,7 @@ RSpec.describe PurchasePlace, type: :model do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Item can't be blank")
       end
-      it 'phone_numberが空だと保存できないこと' do
+      it 'phone_numberが空だと保存できない' do
         @purchase.item_id = ''
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Item can't be blank")
@@ -88,7 +88,7 @@ RSpec.describe PurchasePlace, type: :model do
        expect(@purchase.errors.full_messages).to include("Phone number is too short (minimum is 10 characters)")
       end
       it 'phone_numberが11桁以上では登録できない' do
-        @purchase.phone_number = Faker::Number.between(from: 00000000000, to: 99999999999999999999)
+        @purchase.phone_number = Faker::Number.between(from: 10000000000, to: 99999999999999999999)
         @purchase.phone_number = @purchase.phone_number
         @purchase.valid?
        expect(@purchase.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
