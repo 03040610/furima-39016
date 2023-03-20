@@ -6,8 +6,6 @@ FactoryBot.define do
     address               {'池袋'}
     building_name         {'嵯峨崎'}
     phone_number          {Faker::Number.between(from: 1000000000, to: 10000000000)}
-    user_id               {2}
-    item_id               {2}
     token                 {'tok_4b21329619a7f63b6f8b20406708'}
   end
 end
