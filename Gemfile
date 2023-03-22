@@ -71,3 +71,4 @@ gem 'active_hash'
 gem 'payjp'
 gem 'net-http'
 gem 'pry-rails'
+gem "aws-sdk-s3", require: false
