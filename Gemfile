@@ -72,3 +72,6 @@ gem 'payjp'
 gem 'net-http'
 gem 'pry-rails'
 gem "aws-sdk-s3", require: false
+group :production do
+  gem 'unicorn', '5.4.1'
+end
